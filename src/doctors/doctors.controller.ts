@@ -1,5 +1,5 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
-import {CreateDoctorDto} from "./dto/create-doctor.dto";
+import {CreateDoctorDto} from "../dto/create-doctor.dto";
 import {DoctorsService} from "./doctors.service";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {Doctor} from "./doctors.model";

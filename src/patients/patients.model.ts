@@ -1,30 +1,31 @@
 import {Column, DataType, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
 
-interface DoctorCreationAttrs {
-    email:string
+interface PatientCreateAttrs{
+    email: string;
     password: string
     fullName: string
-    sex: string
-    phone: string
+    phone: string;
+    birthDate: string
+    sex: string;
+    address: string
 }
 
-
-@Table({tableName: 'doctors'})
-export class Doctor extends Model<Doctor,DoctorCreationAttrs> {
+@Table({tableName: 'patients'})
+export class Patient extends Model<Patient, PatientCreateAttrs> {
     @ApiProperty({example: 1, description:'Doctor unique id'})
     @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
     id: number;
 
-    @ApiProperty({example: 'doctor.example@gmail.com', description:'Email example'})
+    @ApiProperty({example: 'patient.example@gmail.com', description:'Email example'})
     @Column({ type: DataType.STRING, unique: true, allowNull: true})
     email:string
 
-    @ApiProperty({example: '123456789', description:'Doctor\'s password'})
+    @ApiProperty({example: '123456789', description:'Patient\'s password'})
     @Column({ type: DataType.STRING, allowNull: true})
     password: string
 
-    @ApiProperty({example: 'Alex Wood', description:'Doctor\'s name'})
+    @ApiProperty({example: 'Alex Wood', description:'Patient\'s name'})
     @Column({ type: DataType.STRING, allowNull: true})
     fullName: string
 
@@ -36,10 +37,11 @@ export class Doctor extends Model<Doctor,DoctorCreationAttrs> {
     @Column({ type: DataType.STRING, allowNull: true})
     phone: string
 
-    @ApiProperty({example: 'pediatrician', description:'Specialization'})
+    @ApiProperty({example: 'New Island, Puskina Street', description:'Patient address'})
     @Column({ type: DataType.STRING, allowNull: true})
-    specialization: string
+    address: string
 
+    @ApiProperty({example: '20/11/2000', description:'Patient birthDate'})
     @Column({ type: DataType.STRING, allowNull: true})
-    startWorkDate: string
+    birthDate: string
 }

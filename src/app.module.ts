@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import {SequelizeModule} from "@nestjs/sequelize";
 import { DoctorsModule } from './doctors/doctors.module';
 import {Doctor} from "./doctors/doctors.model";
+import { PatientsModule } from './patients/patients.module';
+import {Patient} from "./patients/patients.model";
 
 @Module({
   controllers: [AppController],
@@ -20,10 +22,11 @@ import {Doctor} from "./doctors/doctors.model";
       username: process.env.POSTGRES_USERNAME, // username for db
       password: process.env.POSTGRES_PASSWORD, // password for db
       database: process.env.POSTGRES_DB, // db name
-      models: [Doctor],
+      models: [Doctor, Patient],
       autoLoadModels: true // for adding tables in db
     }),
     DoctorsModule,
+    PatientsModule,
   ]
 })
 export class AppModule {}
