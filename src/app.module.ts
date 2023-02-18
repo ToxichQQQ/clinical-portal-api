@@ -7,6 +7,7 @@ import { DoctorsModule } from './doctors/doctors.module';
 import {Doctor} from "./doctors/doctors.model";
 import { PatientsModule } from './patients/patients.module';
 import {Patient} from "./patients/patients.model";
+import {DoctorsPatients} from "./doctors/doctors-patients.model";
 
 @Module({
   controllers: [AppController],
@@ -22,7 +23,7 @@ import {Patient} from "./patients/patients.model";
       username: process.env.POSTGRES_USERNAME, // username for db
       password: process.env.POSTGRES_PASSWORD, // password for db
       database: process.env.POSTGRES_DB, // db name
-      models: [Doctor, Patient],
+      models: [Doctor, Patient, DoctorsPatients],
       autoLoadModels: true // for adding tables in db
     }),
     DoctorsModule,

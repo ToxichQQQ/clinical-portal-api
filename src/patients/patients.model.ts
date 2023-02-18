@@ -1,5 +1,7 @@
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {BelongsToMany, Column, DataType, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
+import {Doctor} from "../doctors/doctors.model";
+import {DoctorsPatients} from "../doctors/doctors-patients.model";
 
 interface PatientCreateAttrs{
     email: string;
@@ -44,4 +46,7 @@ export class Patient extends Model<Patient, PatientCreateAttrs> {
     @ApiProperty({example: '20/11/2000', description:'Patient birthDate'})
     @Column({ type: DataType.STRING, allowNull: true})
     birthDate: string
+
+    @BelongsToMany(() => Doctor, () => DoctorsPatients)
+    doctors: Doctor[]
 }
